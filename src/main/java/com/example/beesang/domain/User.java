@@ -1,27 +1,27 @@
 package com.example.beesang.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class User {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private Long id;
 
-    private String userid;
-    private String password;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "school_id")
+    private School school;
 
     private String username;
 
-    @Enumerated(EnumType.STRING)
-    private School school;
-
-    private int schoolId;
+    public User(School school, String username) {
+        this.school = school;
+        this.username = username;
+    }
 }
