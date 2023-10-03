@@ -17,7 +17,6 @@ public class UserRepositoryTest {
 
     @Test
     @Transactional
-//    @Rollback(false)
     public void userCreateTest() {
         String schoolName = "건국초등학교";
         School school = new School(schoolName);
