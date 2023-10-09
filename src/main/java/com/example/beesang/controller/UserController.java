@@ -17,13 +17,12 @@ public class UserController {
 
     @GetMapping("/info")
     public testResponse readUserInfo() {
-        System.out.println("check");
         return new testResponse("beesang backend response");
     }
 
     @PostMapping("/info")
-    public String readUserInfo2(@RequestBody postData req) {
-        return req.id + " : " + req.pw;
+    public testResponse readUserInfo2(@RequestBody postData req) {
+        return new testResponse(req.id + " : " + req.pw);
     }
 
     @Data
