@@ -16,9 +16,9 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping("/info")
-    public String readUserInfo() {
+    public testResponse readUserInfo() {
         System.out.println("check");
-        return "user info test";
+        return new testResponse("beesang backend response");
     }
 
     @PostMapping("/info")
@@ -31,5 +31,11 @@ public class UserController {
     public static class postData {
         private String id;
         private String pw;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class testResponse {
+        private String res;
     }
 }
