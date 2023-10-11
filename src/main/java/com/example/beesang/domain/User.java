@@ -1,5 +1,6 @@
 package com.example.beesang.domain;
 
+import com.example.beesang.dto.user.UserRegisterRequest;
 import jakarta.persistence.*;
 
 import lombok.Getter;
@@ -17,11 +18,18 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "school_id")
     private School school;
+    private String schoolId;
 
+    private String email;
+    private String password;
     private String username;
 
-    public User(School school, String username) {
+    //register constructor
+    public User(School school, UserRegisterRequest request) {
         this.school = school;
-        this.username = username;
+        this.schoolId = request.getSchoolId();
+        this.email = request. getUserEmail();
+        this.password = request.getPassword();
+        this.username = request.getUsername();
     }
 }

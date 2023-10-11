@@ -1,10 +1,8 @@
 package com.example.beesang.controller;
 
-import com.example.beesang.repository.UserRepository;
-import jakarta.websocket.OnOpen;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.beesang.dto.user.UserLoginRequest;
+import com.example.beesang.dto.user.UserRegisterRequest;
+import com.example.beesang.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,28 +11,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    @GetMapping("/info")
-    public testResponse readUserInfo() {
-        return new testResponse("beesang backend response");
+    @PostMapping("/register")
+    public void register(@RequestBody UserRegisterRequest request) {
+        userService.register(request);
     }
 
-    @PostMapping("/info")
-    public testResponse readUserInfo2(@RequestBody postData req) {
-        return new testResponse(req.id + " : " + req.pw);
-    }
-
-    @Data
-    @AllArgsConstructor
-    public static class postData {
-        private String id;
-        private String pw;
-    }
-
-    @Data
-    @AllArgsConstructor
-    public static class testResponse {
-        private String res;
+    @PostMapping("/login")
+    public void login(@RequestBody UserLoginRequest request) {
+        userService.login(request.getUserEmail(), request.getPassword());
     }
 }

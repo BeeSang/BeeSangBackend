@@ -1,0 +1,16 @@
+package com.example.beesang.dto.user;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserRegisterRequest {
+    private String schoolName;
+    private String schoolId;
+    private String userEmail;
+    private String password;
+    private String username;
+}
