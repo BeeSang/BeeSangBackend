@@ -3,11 +3,12 @@ package com.example.beesang.repository;
 import com.example.beesang.domain.School;
 import com.example.beesang.domain.User;
 import com.example.beesang.dto.user.UserRegisterRequest;
+import com.example.beesang.exception.ExceptionErrorCode;
+import com.example.beesang.exception.exceptions.SchoolException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
@@ -20,17 +21,17 @@ public class UserRepositoryTest {
     @Transactional
     public void userCreateTest() {
         String schoolName = "건국초등학교";
-        School school = new School(schoolName);
-        schoolRepository.save(school);
+        School findSchool = schoolRepository.findByName(schoolName)
+                .orElseThrow(() -> new SchoolException(ExceptionErrorCode.SCHOOL_NOT_FOUND_EXCEPTION, 400));
 
         String username = "정건국";
         String schoolId = "111111";
         String email = "email";
         String password = "password";
-        User user = new User(school, new UserRegisterRequest(schoolName, schoolId, email, password, username));
+        User user = new User(findSchool, new UserRegisterRequest(schoolName, schoolId, email, password, username));
 
         String username2 = "김건국";
-        User user2 = new User(school, new UserRegisterRequest(schoolName, schoolId, email, password, username2));
+        User user2 = new User(findSchool, new UserRegisterRequest(schoolName, schoolId, email, password, username2));
 
         userRepository.save(user);
         userRepository.save(user2);

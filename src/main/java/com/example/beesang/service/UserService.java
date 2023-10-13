@@ -7,6 +7,8 @@ import com.example.beesang.exception.ExceptionErrorCode;
 import com.example.beesang.exception.exceptions.AuthException;
 import com.example.beesang.repository.SchoolRepository;
 import com.example.beesang.repository.UserRepository;
+import com.example.beesang.service.auth.ExtraClaims;
+import com.example.beesang.service.auth.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final SchoolRepository schoolRepository;
 
+    private final JwtService jwtService;
+
     @Transactional
     public void register(UserRegisterRequest request) {
         School school = schoolRepository.findByName(request.getSchoolName())
@@ -29,15 +33,16 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void login(String userEmail, String userPassword) {
-        //ID, PW 검증
+    public String login(String userEmail, String userPassword) {
+        //ID, PW validation
         User findUser = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new AuthException(ExceptionErrorCode.AUTHENTICATION_EXCEPTION, 400));
+                .orElseThrow(() -> new AuthException(ExceptionErrorCode.AUTHENTICATION_EXCEPTION, 403));
 
         if(!findUser.getPassword().equals(userPassword)) {
-            throw new AuthException(ExceptionErrorCode.AUTHENTICATION_EXCEPTION, 400);
+            throw new AuthException(ExceptionErrorCode.AUTHENTICATION_EXCEPTION, 403);
         }
 
-        //session return
+        //return token
+        return jwtService.generateAccessToken(findUser, new ExtraClaims(findUser));
     }
 }

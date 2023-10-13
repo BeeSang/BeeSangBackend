@@ -1,9 +1,11 @@
 package com.example.beesang.controller;
 
 import com.example.beesang.dto.user.UserLoginRequest;
+import com.example.beesang.dto.user.UserLoginResponse;
 import com.example.beesang.dto.user.UserRegisterRequest;
 import com.example.beesang.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +21,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody UserLoginRequest request) {
-        userService.login(request.getUserEmail(), request.getPassword());
+    public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest request) {
+        return ResponseEntity.ok(
+                new UserLoginResponse(userService.login(request.getUserEmail(), request.getPassword()))
+        );
     }
 }

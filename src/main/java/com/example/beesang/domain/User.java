@@ -18,7 +18,7 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "school_id")
     private School school;
-    private String schoolId;
+    private String studentId;
 
     private String email;
     private String password;
@@ -27,7 +27,7 @@ public class User {
     //register constructor
     public User(School school, UserRegisterRequest request) {
         this.school = school;
-        this.schoolId = request.getSchoolId();
+        this.studentId = request.getStudentId();
         this.email = request. getUserEmail();
         this.password = request.getPassword();
         this.username = request.getUsername();
