@@ -26,6 +26,10 @@ jobs:
           echo spring.datasource.password=${{ secrets.DATASOURCE_PASSWORD }} >>./src/main/resources/application.properties
           echo spring.datasource.driver-class-name=org.mariadb.jdbc.Driver >>./src/main/resources/application.properties
           echo server.port=${{ secrets.PORT }} >>./src/main/resources/application.properties
+          
+          echo jwt-secret-key=${{ secrets.JWT_SECRET_KEY }} >>./src/main/resources/application.properties
+          echo jwt-issuer=${{ secrets.JWT_ISSUER }} >>./src/main/resources/application.properties
+          echo jwt-access-expiration=${{ secrets.JWT_ACCESS_EXPIRATION }} >>./src/main/resources/application.properties
 
       # JDK 17 설치
       - name: Set up JDK 17
