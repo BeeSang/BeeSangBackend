@@ -13,15 +13,15 @@ public class ExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(AuthException.class)
     public ResponseEntity<ExceptionResponse> handleAuthException(AuthException e, HttpServletRequest request) {
-        log.error("ERROR: {}, URL: {}, MESSAGE: {}, STATUS: {}", e.getAuthErrorCode(),
+        log.error("ERROR: {}, URL: {}, MESSAGE: {}, STATUS: {}", e.getErrorCode(),
                 request.getRequestURI(), e.getMessage(), e.getStatus());
-        return ResponseEntity.status(e.getStatus()).body(new ExceptionResponse(e.getAuthErrorCode(), e.getMessage()));
+        return ResponseEntity.status(e.getStatus()).body(new ExceptionResponse(e.getErrorCode(), e.getMessage()));
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler(SchoolException.class)
     public ResponseEntity<ExceptionResponse> handleSchoolException(AuthException e, HttpServletRequest request) {
-        log.error("ERROR: {}, URL: {}, MESSAGE: {}, STATUS: {}", e.getAuthErrorCode(),
+        log.error("ERROR: {}, URL: {}, MESSAGE: {}, STATUS: {}", e.getErrorCode(),
                 request.getRequestURI(), e.getMessage(), e.getStatus());
-        return ResponseEntity.status(e.getStatus()).body(new ExceptionResponse(e.getAuthErrorCode(), e.getMessage()));
+        return ResponseEntity.status(e.getStatus()).body(new ExceptionResponse(e.getErrorCode(), e.getMessage()));
     }
 }
