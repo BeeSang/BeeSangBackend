@@ -24,6 +24,6 @@ public class LectureService {
         Chapter chapter = chapterRepository.findById(chapterId)
                 .orElseThrow(() -> new StudyException(ExceptionErrorCode.CHAPTER_NOT_FOUND_EXCEPTION, 400));
 
-        lectureRepository.save(new Lecture(chapter, request.getTitle()));
+        lectureRepository.save(new Lecture(chapter, request.getTitle(), request.getVideoLink()));
     }
 }

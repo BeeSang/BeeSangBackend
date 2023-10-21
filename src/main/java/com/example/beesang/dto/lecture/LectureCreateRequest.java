@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class LectureCreateRequest {
 
     private String title;
+    private String videoLink;
 }

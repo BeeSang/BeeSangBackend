@@ -16,9 +16,11 @@ public class Lecture {
     private Chapter chapter;
 
     private String title;
+    private String videoLink;
 
-    public Lecture(Chapter chapter, String title) {
+    public Lecture(Chapter chapter, String title, String videoLink) {
         this.chapter = chapter;
         this.title = title;
+        this.videoLink = videoLink;
     }
 }
