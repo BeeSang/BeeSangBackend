@@ -4,15 +4,9 @@ import com.example.beesang.exception.ExceptionErrorCode;
 import lombok.Getter;
 
 @Getter
-public class AuthException extends RuntimeException {
-    private ExceptionErrorCode authErrorCode;
-    private String message;
-    private int status;
+public class AuthException extends BeesangException {
 
-    public AuthException(ExceptionErrorCode authErrorCode, int status) {
-        super(authErrorCode.getStatusMessage());
-        this.authErrorCode = authErrorCode;
-        this.message = authErrorCode.getStatusMessage();
-        this.status = status;
+    public AuthException(ExceptionErrorCode errorCode, int status) {
+        super(errorCode, status);
     }
 }
