@@ -4,6 +4,7 @@ import com.example.beesang.domain.study.Chapter;
 import com.example.beesang.domain.study.Quiz;
 import com.example.beesang.dto.quiz.QuizCreateRequest;
 import com.example.beesang.exception.ExceptionErrorCode;
+import com.example.beesang.exception.exceptions.BeesangException;
 import com.example.beesang.exception.exceptions.StudyException;
 import com.example.beesang.repository.ChapterRepository;
 import com.example.beesang.repository.QuizRepository;
@@ -31,9 +32,7 @@ public class QuizService {
     }
 
     public List<Quiz> readQuizAll(Long chapterId) {
-        Chapter chapter = chapterRepository.findById(chapterId)
-                .orElseThrow(() -> new StudyException(ExceptionErrorCode.CHAPTER_NOT_FOUND_EXCEPTION, 400));
-
-        return quizRepository.findAll();
+        return quizRepository.findAllByChapter_Id(chapterId)
+                .orElseThrow(() -> new BeesangException(ExceptionErrorCode.QUIZ_NOT_FOUND_EXCEPTION, 404));
     }
 }
