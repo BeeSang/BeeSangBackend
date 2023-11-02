@@ -4,6 +4,7 @@ import com.example.beesang.domain.study.Chapter;
 import com.example.beesang.domain.study.Lecture;
 import com.example.beesang.dto.lecture.LectureCreateRequest;
 import com.example.beesang.exception.ExceptionErrorCode;
+import com.example.beesang.exception.exceptions.BeesangException;
 import com.example.beesang.exception.exceptions.StudyException;
 import com.example.beesang.repository.ChapterRepository;
 import com.example.beesang.repository.LectureRepository;
@@ -30,9 +31,7 @@ public class LectureService {
     }
 
     public List<Lecture> readLectureAll(Long chapterId) {
-        Chapter chapter = chapterRepository.findById(chapterId)
-                .orElseThrow(() -> new StudyException(ExceptionErrorCode.CHAPTER_NOT_FOUND_EXCEPTION, 400));
-
-        return lectureRepository.findAll();
+        return lectureRepository.findAllByChapter_Id(chapterId)
+                .orElseThrow(() -> new BeesangException(ExceptionErrorCode.LECTURE_NOT_FOUND_EXCEPTION, 404));
     }
 }
