@@ -21,7 +21,8 @@ public enum ExceptionErrorCode {
     SCHOOL_ALREADY_EXIST_EXCEPTION("이미 존재하는 학교 이름입니다."),
 
     //Study Exception
-    CHAPTER_NOT_FOUND_EXCEPTION("챕터 정보를 찾을 수 없습니다.");
+    CHAPTER_NOT_FOUND_EXCEPTION("챕터 정보를 찾을 수 없습니다."),
+    LECTURE_NOT_FOUND_EXCEPTION("강의 정보를 찾을 수 없습니다.");
 
     private final String statusMessage;
 }
