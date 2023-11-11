@@ -9,5 +9,4 @@ public class BeeSangApplication {
 		SpringApplication.run(BeeSangApplication.class, args);
 	}
 
-	//secret key updapte #3
 }
