@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -19,21 +17,21 @@ public class FarmService {
 
     @Transactional
     public void createFarms(User user) {
-        TomatoFarm tomatoFarm = new TomatoFarm(user);
+        Farm tomatoFarm = new Farm(user, FarmType.TOMATO);
         farmRepository.save(tomatoFarm);
 
-        MangoFarm mangoFarm = new MangoFarm(user);
+        Farm mangoFarm = new Farm(user, FarmType.MANGO);
         farmRepository.save(mangoFarm);
 
-        LettuceFarm lettuceFarm = new LettuceFarm(user);
+        Farm lettuceFarm = new Farm(user, FarmType.LETTUCE);
         farmRepository.save(lettuceFarm);
 
-        SweetPotatoFarm sweetPotatoFarm = new SweetPotatoFarm(user);
+        Farm sweetPotatoFarm = new Farm(user, FarmType.SWEET_POTATO);
         farmRepository.save(sweetPotatoFarm);
     }
 
-    public List<Farm> findAllByUserId(Long userId) {
-        return farmRepository.findAllByUserId(userId)
+    public Farm findFarm(Long userId, FarmType farmType) {
+        return farmRepository.findByUserIdAndFarmType(userId, farmType)
                 .orElseThrow(() -> new BeesangException(ExceptionErrorCode.FARM_NOT_FOUND_EXCEPTION, 404));
     }
 }
