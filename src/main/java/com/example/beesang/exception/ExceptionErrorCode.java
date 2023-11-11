@@ -23,7 +23,10 @@ public enum ExceptionErrorCode {
     //Study Exception
     CHAPTER_NOT_FOUND_EXCEPTION("챕터 정보를 찾을 수 없습니다."),
     LECTURE_NOT_FOUND_EXCEPTION("강의 정보를 찾을 수 없습니다."),
-    QUIZ_NOT_FOUND_EXCEPTION("퀴즈 정보를 찾을 수 없습니다.");
+    QUIZ_NOT_FOUND_EXCEPTION("퀴즈 정보를 찾을 수 없습니다."),
+
+    //Farm Exception
+    FARM_NOT_FOUND_EXCEPTION("농장 정보를 찾을 수 없습니다.");
 
 
     private final String statusMessage;
