@@ -49,4 +49,9 @@ public class UserService {
         //return token
         return jwtService.generateAccessToken(findUser, new ExtraClaims(findUser));
     }
+
+    public User findUser(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new AuthException(ExceptionErrorCode.USER_NOT_FOUND_EXCEPTION, 404));
+    }
 }

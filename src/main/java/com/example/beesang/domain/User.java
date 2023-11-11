@@ -21,6 +21,7 @@ public class User {
 
     private int coin;
     private int bees;
+    private int level;
 
     private String studentId;
     private String email;
@@ -32,6 +33,7 @@ public class User {
         this.school = school;
         this.coin = 100;
         this.bees = 7;
+        this.level = 1;
         this.studentId = request.getStudentId();
         this.email = request. getUserEmail();
         this.password = request.getPassword();
