@@ -9,6 +9,7 @@ import com.example.beesang.dto.quiz.QuizReadAllResponse;
 import com.example.beesang.service.study.ChapterService;
 import com.example.beesang.service.study.LectureService;
 import com.example.beesang.service.study.QuizService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class StudyController {
     }
 
     @GetMapping("/chapter/readAll")
-    public ResponseEntity<List<ChapterReadAllResponse>> readAllChapter() {
+    public ResponseEntity<List<ChapterReadAllResponse>> readAllChapter(HttpServletRequest request) {
         return ResponseEntity.ok(
                 chapterService.readChapterAll().stream()
                         .map(ChapterReadAllResponse::new)
