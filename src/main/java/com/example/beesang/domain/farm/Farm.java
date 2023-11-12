@@ -1,6 +1,7 @@
 package com.example.beesang.domain.farm;
 
 import com.example.beesang.domain.User;
+import com.example.beesang.dto.farm.FarmUpdateRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Farm {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Enumerated(EnumType.STRING)
     private FarmType farmType;
 
     private int crops1;
@@ -30,5 +32,11 @@ public class Farm {
         this.crops1 = 1;
         this.crops2 = 1;
         this.crops3 = 1;
+    }
+
+    public void update(FarmUpdateRequest request) {
+        this.crops1 = request.getCrops1();
+        this.crops2 = request.getCrops2();
+        this.crops3 = request.getCrops3();
     }
 }

@@ -39,4 +39,11 @@ public class User {
         this.password = request.getPassword();
         this.username = request.getUsername();
     }
+
+    public void updateCoin(int coin) {
+        this.coin += coin;
+    }
+    public void updateBees(int bees) {
+        this.bees += bees;
+    }
 }
