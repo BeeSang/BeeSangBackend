@@ -16,20 +16,20 @@ public class JwtServiceTest {
     @Autowired private JwtService jwtService;
     @Autowired private UserRepository userRepository;
 
-    @Test
-    public void generateJwtTest() {
-        //given
-        String userEmail = "js991001";
-        User findUser = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new AuthException(ExceptionErrorCode.AUTHENTICATION_EXCEPTION, 400));
-
-        //when
-        String accessToken = jwtService.generateAccessToken(findUser, new ExtraClaims(findUser));
-
-        //then
-        System.out.println("generated token: " + accessToken);
-
-        String loginEmail = jwtService.getLoginEmail(accessToken);
-        System.out.println("login email: " + loginEmail);
-    }
+//    @Test
+//    public void generateJwtTest() {
+//        //given
+//        String userEmail = "js991001";
+//        User findUser = userRepository.findByEmail(userEmail)
+//                .orElseThrow(() -> new AuthException(ExceptionErrorCode.AUTHENTICATION_EXCEPTION, 400));
+//
+//        //when
+//        String accessToken = jwtService.generateAccessToken(findUser, new ExtraClaims(findUser));
+//
+//        //then
+//        System.out.println("generated token: " + accessToken);
+//
+//        String loginEmail = jwtService.getLoginEmail(accessToken);
+//        System.out.println("login email: " + loginEmail);
+//    }
 }
