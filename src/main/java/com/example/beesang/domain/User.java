@@ -32,7 +32,7 @@ public class User {
     public User(School school, UserRegisterRequest request) {
         this.school = school;
         this.coin = 100;
-        this.bees = 7;
+        this.bees = 70; //원래 7개
         this.level = 1;
         this.studentId = request.getStudentId();
         this.email = request. getUserEmail();
