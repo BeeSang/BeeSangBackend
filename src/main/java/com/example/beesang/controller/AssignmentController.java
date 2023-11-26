@@ -38,4 +38,10 @@ public class AssignmentController {
         //file s3에 업로드
         s3FileService.uploadImage(S3Const.ASSIGNMENT, file);
     }
+    @PostMapping("/upload_test")
+    public void uploadImage2(@ModelAttribute MultipartFile file) {
+        //myassignment 객체 만들고
+        //file s3에 업로드
+        s3FileService.uploadImage(S3Const.ASSIGNMENT, file);
+    }
 }
