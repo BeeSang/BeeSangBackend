@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -17,5 +19,9 @@ public class AssignmentService {
     @Transactional
     public void saveAssignment(AssignmentCreateRequest request) {
         assignmentRepository.save(new Assignment(request.getWeek(), request.getTitle(), request.getDescription()));
+    }
+
+    public List<Assignment> readAllAssignment() {
+        return assignmentRepository.findAllOrderByWeek();
     }
 }
