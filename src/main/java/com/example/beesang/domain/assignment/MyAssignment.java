@@ -18,7 +18,7 @@ public class MyAssignment {
     @JoinColumn(name = "assignment_id")
     private Assignment assignment;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
