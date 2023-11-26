@@ -1,12 +1,13 @@
 package com.example.beesang.controller;
 
 import com.example.beesang.dto.assignment.AssignmentCreateRequest;
+import com.example.beesang.dto.assignment.AssignmentResponse;
 import com.example.beesang.service.assignment.AssignmentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,5 +21,10 @@ public class AssignmentController {
         assignmentService.saveAssignment(request);
     }
 
-    //
+    @GetMapping("/readAll")
+    public List<AssignmentResponse> readAllAssignment() {
+        return assignmentService.readAllAssignment()
+                .stream().map(AssignmentResponse::new)
+                .collect(Collectors.toList());
+    }
 }

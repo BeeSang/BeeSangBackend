@@ -1,12 +1,10 @@
 package com.example.beesang.dto.assignment;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class AssignmentCreateRequest {
     private int week;
     private String title;

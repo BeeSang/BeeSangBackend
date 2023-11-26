@@ -30,6 +30,12 @@ jobs:
           echo jwt-secret-key=${{ secrets.JWT_SECRET_KEY }} >>./src/main/resources/application.properties
           echo jwt-issuer=${{ secrets.JWT_ISSUER }} >>./src/main/resources/application.properties
           echo jwt-access-expiration=${{ secrets.JWT_ACCESS_EXPIRATION }} >>./src/main/resources/application.properties
+          
+          echo cloud.aws.s3.bucket=${{ secrets.S3_BUCKET }} >>./src/main/resources/application.properties
+          echo cloud.aws.s3.stack.auto=${{ secrets.S3_STACK_AUTO }} >>./src/main/resources/application.properties
+          echo cloud.aws.s3.region.static=${{ secrets.S3_REGION_STATIC }} >>./src/main/resources/application.properties
+          echo cloud.aws.s3.credentials.accessKey=${{ secrets.S3_CREDENTIALS_ACCESSKEY }} >>./src/main/resources/application.properties
+          echo cloud.aws.s3.credentials.secretKey=${{ secrets.S3_CREDENTIALS_SECRETKEY }} >>./src/main/resources/application.properties
 
       # JDK 17 설치
       - name: Set up JDK 17
