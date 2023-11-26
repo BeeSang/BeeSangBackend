@@ -41,7 +41,7 @@ public class AssignmentController {
     public void uploadImage(@RequestHeader HttpHeaders headers,
                             @PathVariable("assignmentId") Long assignmentId,
                             @RequestParam("file") MultipartFile file) {
-        long userId = Long.parseLong(jwtService.getUserId(headers));
+        Long userId = Long.parseLong(jwtService.getUserId(headers));
         String imageName = s3FileService.uploadImage(S3Const.ASSIGNMENT, file);
         myAssignmentService.saveMyAssignment(userId, assignmentId, imageName);
     }
