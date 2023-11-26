@@ -29,7 +29,10 @@ public enum ExceptionErrorCode {
     //Farm Exception
     FARM_NOT_FOUND_EXCEPTION("농장 정보를 찾을 수 없습니다."),
     NOT_ENOUGH_BEES_EXCEPTION("벌이 부족합니다."),
-    NOT_ENOUGH_CROPS_EXCEPTION("농작물이 부족합니다.");
+    NOT_ENOUGH_CROPS_EXCEPTION("농작물이 부족합니다."),
+
+
+    ASSIGNMENT_NOT_FOUND_EXCEPTION("과제 정보를 찾을 수 없습니다.");
 
 
     private final String statusMessage;
