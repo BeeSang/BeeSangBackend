@@ -4,6 +4,7 @@ import com.example.beesang.domain.farm.Farm;
 import com.example.beesang.domain.farm.FarmType;
 import com.example.beesang.dto.farm.FarmReadResponse;
 import com.example.beesang.dto.farm.FarmUpdateRequest;
+import com.example.beesang.dto.farm.FarmUpdateResponse;
 import com.example.beesang.dto.farm.FarmUserReadResponse;
 import com.example.beesang.service.FarmService;
 import com.example.beesang.service.UserService;
@@ -30,7 +31,6 @@ public class FarmController {
     @GetMapping("/read") //API TEST 완료 (2023-11-12)
     public FarmReadResponse readFarm(@RequestParam(value="farmType") String farmType,
                                      @RequestHeader HttpHeaders headers) {
-        System.out.println("fuck");
         long userId = Long.parseLong(jwtService.getUserId(headers));
 
         Farm findFarm = farmService.findFarm(userId, FarmType.valueOf(farmType));
@@ -38,18 +38,20 @@ public class FarmController {
     }
 
     @PostMapping("/grow/{farmId}") //API TEST 완료 (2023-11-12)
-    public void growCrops(@PathVariable(name="farmId") Long farmId,
-                          @RequestBody FarmUpdateRequest request,
-                          @RequestHeader HttpHeaders headers) {
+    public FarmUpdateResponse growCrops(@PathVariable(name="farmId") Long farmId,
+                                        @RequestBody FarmUpdateRequest request,
+                                        @RequestHeader HttpHeaders headers) {
         Long userId = Long.parseLong(jwtService.getUserId(headers));
         farmService.growCrops(farmId, userId, request);
+        return new FarmUpdateResponse(request.getCrops1(), request.getCrops2(), request.getCrops3());
     }
 
     @PostMapping("/harvest/{farmId}") //API TEST 완료 (2023-11-12)
-    public void harvestCrops(@PathVariable(name="farmId") Long farmId,
+    public FarmUpdateResponse harvestCrops(@PathVariable(name="farmId") Long farmId,
                              @RequestBody FarmUpdateRequest request,
                              @RequestHeader HttpHeaders headers) {
         Long userId = Long.parseLong(jwtService.getUserId(headers));
         farmService.harvestCrops(farmId, userId, request);
+        return new FarmUpdateResponse(request.getCrops1(), request.getCrops2(), request.getCrops3());
     }
 }
