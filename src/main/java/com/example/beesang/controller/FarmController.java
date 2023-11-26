@@ -2,10 +2,7 @@ package com.example.beesang.controller;
 
 import com.example.beesang.domain.farm.Farm;
 import com.example.beesang.domain.farm.FarmType;
-import com.example.beesang.dto.farm.FarmReadResponse;
-import com.example.beesang.dto.farm.FarmUpdateRequest;
-import com.example.beesang.dto.farm.FarmUpdateResponse;
-import com.example.beesang.dto.farm.FarmUserReadResponse;
+import com.example.beesang.dto.farm.*;
 import com.example.beesang.service.FarmService;
 import com.example.beesang.service.UserService;
 import com.example.beesang.service.auth.JwtService;
@@ -48,7 +45,7 @@ public class FarmController {
 
     @PostMapping("/harvest/{farmId}") //API TEST 완료 (2023-11-12)
     public FarmUpdateResponse harvestCrops(@PathVariable(name="farmId") Long farmId,
-                             @RequestBody FarmUpdateRequest request,
+                             @RequestBody FarmHarvestRequest request,
                              @RequestHeader HttpHeaders headers) {
         Long userId = Long.parseLong(jwtService.getUserId(headers));
         farmService.harvestCrops(farmId, userId, request);

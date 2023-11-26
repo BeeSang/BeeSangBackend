@@ -2,6 +2,7 @@ package com.example.beesang.service;
 
 import com.example.beesang.domain.User;
 import com.example.beesang.domain.farm.*;
+import com.example.beesang.dto.farm.FarmHarvestRequest;
 import com.example.beesang.dto.farm.FarmUpdateRequest;
 import com.example.beesang.exception.ExceptionErrorCode;
 import com.example.beesang.exception.exceptions.BeesangException;
@@ -49,12 +50,12 @@ public class FarmService {
             throw new BeesangException(ExceptionErrorCode.NOT_ENOUGH_BEES_EXCEPTION, 403);
         }
 
-        findFarm.update(request);
+        findFarm.update(request.getCrops1(), request.getCrops2(), request.getCrops3());
         findUser.updateBees(-5);
     }
 
     @Transactional
-    public void harvestCrops(Long farmId, Long userId, FarmUpdateRequest request) {
+    public void harvestCrops(Long farmId, Long userId, FarmHarvestRequest request) {
         Farm findFarm = farmRepository.findById(farmId)
                 .orElseThrow(() -> new BeesangException(ExceptionErrorCode.FARM_NOT_FOUND_EXCEPTION, 404));
 
@@ -66,7 +67,7 @@ public class FarmService {
             throw new BeesangException(ExceptionErrorCode.NOT_ENOUGH_CROPS_EXCEPTION, 403);
         }
 
-        findFarm.update(request);
-        findUser.updateCoin(100);
+        findUser.updateCoin(100 * request.getHarvestCount());
+        findFarm.update(request.getCrops1(), request.getCrops2(), request.getCrops3());
     }
 }

@@ -1,6 +1,7 @@
 package com.example.beesang.domain.farm;
 
 import com.example.beesang.domain.User;
+import com.example.beesang.dto.farm.FarmHarvestRequest;
 import com.example.beesang.dto.farm.FarmUpdateRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -34,9 +35,9 @@ public class Farm {
         this.crops3 = 1;
     }
 
-    public void update(FarmUpdateRequest request) {
-        this.crops1 = request.getCrops1();
-        this.crops2 = request.getCrops2();
-        this.crops3 = request.getCrops3();
+    public void update(int crops1, int crops2, int crops3) {
+        this.crops1 = crops1;
+        this.crops2 = crops2;
+        this.crops3 = crops3;
     }
 }
