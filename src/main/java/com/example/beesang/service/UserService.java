@@ -54,4 +54,9 @@ public class UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new AuthException(ExceptionErrorCode.USER_NOT_FOUND_EXCEPTION, 404));
     }
+
+    public User readUserWithSchool(Long userId) {
+        return userRepository.findByIdWithSchool(userId)
+                .orElseThrow(() -> new AuthException(ExceptionErrorCode.USER_NOT_FOUND_EXCEPTION, 404));
+    }
 }
