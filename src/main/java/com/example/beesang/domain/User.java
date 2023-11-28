@@ -31,8 +31,8 @@ public class User {
     //register constructor
     public User(School school, UserRegisterRequest request) {
         this.school = school;
-        this.coin = 100;
-        this.bees = 70; //원래 7개
+        this.coin = 0;
+        this.bees = 0; //원래 7개
         this.level = 1;
         this.studentId = request.getStudentId();
         this.email = request. getUserEmail();
