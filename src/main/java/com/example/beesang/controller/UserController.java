@@ -37,9 +37,7 @@ public class UserController {
     public void uploadProfileImg(@RequestHeader HttpHeaders headers,
                                  @RequestParam("file") MultipartFile file) {
         Long userId = Long.parseLong(jwtService.getUserId(headers));
-        User findUser = userService.findUser(userId);
-        String imgPath = s3FileService.uploadImage(S3Const.USER, file);
-        findUser.setProfileImgPath(imgPath);
+        userService.uploadProfileImg(userId, file);
     }
 
     @GetMapping("")
@@ -53,8 +51,7 @@ public class UserController {
     @PutMapping("")
     public void updateUser(@RequestHeader HttpHeaders headers,
                            @RequestBody UserUpdateRequest request) {
-
+        Long userId = Long.parseLong(jwtService.getUserId(headers));
+        userService.updateUser(userId, request);
     }
-
-
 }
