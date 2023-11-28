@@ -42,7 +42,7 @@ public class UserController {
         findUser.setProfileImgPath(imgPath);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public UserResponse readUser(@RequestHeader HttpHeaders headers) {
         Long userId = Long.parseLong(jwtService.getUserId(headers));
         return UserResponse.builder()
@@ -50,7 +50,7 @@ public class UserController {
                 .build();
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public void updateUser(@RequestHeader HttpHeaders headers,
                            @RequestBody UserUpdateRequest request) {
 
