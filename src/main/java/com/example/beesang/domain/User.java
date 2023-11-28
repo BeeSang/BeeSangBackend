@@ -27,6 +27,7 @@ public class User {
     private String email;
     private String password;
     private String username;
+    private String profileImgPath;
 
     //register constructor
     public User(School school, UserRegisterRequest request) {
@@ -38,6 +39,11 @@ public class User {
         this.email = request. getUserEmail();
         this.password = request.getPassword();
         this.username = request.getUsername();
+        this.profileImgPath = "defaultImage.png";
+    }
+
+    public void setProfileImgPath(String profileImgPath) {
+        this.profileImgPath = profileImgPath;
     }
 
     public void updateCoin(int coin) {
