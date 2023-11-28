@@ -52,4 +52,10 @@ public class User {
     public void updateBees(int bees) {
         this.bees += bees;
     }
+
+    public void update(String username, School school, String studentId) {
+        this.username = username;
+        this.school = school;
+        this.studentId = studentId;
+    }
 }
