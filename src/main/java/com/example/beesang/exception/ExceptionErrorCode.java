@@ -10,6 +10,7 @@ public enum ExceptionErrorCode {
     //Auth Exception
     AUTHENTICATION_EXCEPTION("로그인 정보가 일치하지 않습니다."),
     USER_NOT_FOUND_EXCEPTION("사용자 정보를 찾을 수 없습니다."),
+    USER_EXIST_EXCEPTION("이미 존재하는 아이디입니다."),
 
     MALFORMED_JWT_EXCEPTION("[손상된 토큰] 잘못된 요청입니다."),
     UNSUPPORTED_JWT_EXCEPTION("[지원하지 않는 토큰] 잘못된 요청입니다."),

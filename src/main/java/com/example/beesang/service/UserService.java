@@ -34,8 +34,9 @@ public class UserService {
     public void register(UserRegisterRequest request) {
         School school = schoolRepository.findByName(request.getSchoolName())
                 .orElseThrow(() -> new AuthException(ExceptionErrorCode.SCHOOL_NOT_FOUND_EXCEPTION, 404));
+        User findUser = userRepository.findByEmail(request.getUserEmail())
+                .orElseThrow(() -> new AuthException(ExceptionErrorCode.USER_EXIST_EXCEPTION, 403));
 
-        //요청값 유효성 검사 필요
         User user = new User(school, request);
         userRepository.save(user);
 
