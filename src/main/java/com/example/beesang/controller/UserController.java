@@ -26,6 +26,11 @@ public class UserController {
         userService.register(request);
     }
 
+    @GetMapping("/{email}")
+    public boolean checkUserExist(@PathVariable(name = "email") String userEmail) {
+        return userService.checkUserExist(userEmail);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest request) {
         return ResponseEntity.ok(

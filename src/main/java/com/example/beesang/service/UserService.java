@@ -56,6 +56,11 @@ public class UserService {
         return jwtService.generateAccessToken(findUser, new ExtraClaims(findUser));
     }
 
+    public boolean checkUserExist(String userEmail) {
+        Optional<User> findUser = userRepository.findByEmail(userEmail);
+        return findUser.isPresent();
+    }
+
     public User findUser(Long userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new AuthException(ExceptionErrorCode.USER_NOT_FOUND_EXCEPTION, 404));
