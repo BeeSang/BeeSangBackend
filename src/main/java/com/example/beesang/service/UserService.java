@@ -36,19 +36,11 @@ public class UserService {
     public void register(UserRegisterRequest request) {
         School school = schoolRepository.findByName(request.getSchoolName())
                 .orElseThrow(() -> new AuthException(ExceptionErrorCode.SCHOOL_NOT_FOUND_EXCEPTION, 404));
-        Optional<User> findUser = userRepository.findByEmail(request.getUserEmail());
-        if(findUser.isPresent()) {
-            throw new BeesangException(ExceptionErrorCode.USER_EXIST_EXCEPTION, 403);
-        }
-        if(!request.getPassword().equals(request.getCheckPassword())) {
-            throw new AuthException(ExceptionErrorCode.AUTHENTICATION_EXCEPTION, 402);
-        }
 
         User user = new User(school, request);
         userRepository.save(user);
 
         farmService.createFarms(user);
-
     }
 
     public String login(String userEmail, String userPassword) {
