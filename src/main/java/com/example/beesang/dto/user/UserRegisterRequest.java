@@ -12,5 +12,6 @@ public class UserRegisterRequest {
     private String studentId;
     private String userEmail;
     private String password;
+    private String checkPassword;
     private String username;
 }
