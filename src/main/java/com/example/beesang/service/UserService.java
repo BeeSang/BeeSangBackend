@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Optional;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -34,13 +36,15 @@ public class UserService {
     public void register(UserRegisterRequest request) {
         School school = schoolRepository.findByName(request.getSchoolName())
                 .orElseThrow(() -> new AuthException(ExceptionErrorCode.SCHOOL_NOT_FOUND_EXCEPTION, 404));
-        User findUser = userRepository.findByEmail(request.getUserEmail())
-                .orElseThrow(() -> new AuthException(ExceptionErrorCode.USER_EXIST_EXCEPTION, 403));
+        Optional<User> findUser = userRepository.findByEmail(request.getUserEmail());
+        if(findUser.isPresent()) {
+            throw new BeesangException(ExceptionErrorCode.USER_EXIST_EXCEPTION, 403);
+        } else {
+            User user = new User(school, request);
+            userRepository.save(user);
 
-        User user = new User(school, request);
-        userRepository.save(user);
-
-        farmService.createFarms(user);
+            farmService.createFarms(user);
+        }
     }
 
     public String login(String userEmail, String userPassword) {
